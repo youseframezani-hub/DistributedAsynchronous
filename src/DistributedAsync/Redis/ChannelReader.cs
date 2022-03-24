@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DistributedAsync.Redis
 {
-    public class RedisChannelReader<TData> : IChannelReader<TData> where TData : new()
+    class RedisChannelReader<TData> : IChannelReader<TData> where TData : new()
     {
         private TData _data;
         private readonly EventWaitHandle _waitHandle;
@@ -65,7 +65,7 @@ namespace DistributedAsync.Redis
         private void Consumer(RedisChannel channel, RedisValue value)
         {
             _data = JsonConvert.DeserializeObject<TData>(value);
-            ReadCompleted.Invoke(_data);
+            ReadCompleted?.Invoke(_data);
             _waitHandle.Set();
         }
 

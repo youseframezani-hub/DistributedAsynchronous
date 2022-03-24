@@ -4,7 +4,7 @@ using System.Collections.Concurrent;
 
 namespace DistributedAsync.Redis
 {
-    public static class RedisConnectionFactory
+    static class RedisConnectionFactory
     {
         public static ConnectionMultiplexer GetConnection(string connectionString)
         {

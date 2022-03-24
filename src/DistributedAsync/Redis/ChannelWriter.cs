@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DistributedAsync.Redis
 {
-    public class RedisChannelWriter<TData> : IChannelWriter<TData> where TData : new()
+    class RedisChannelWriter<TData> : IChannelWriter<TData> where TData : new()
     {
         private readonly ConnectionMultiplexer _connection;
         private readonly string _channelName;

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace DistributedAsync.Redis
 {
-    public class RedisChannelFactory : IChannelFactory
+    class RedisChannelFactory : IChannelFactory
     {
         private readonly string _connectionString;
         public RedisChannelFactory(string connectionString)
