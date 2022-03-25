@@ -26,6 +26,7 @@ namespace Client
             if (response.StatusCode != 202)
                 throw new Exception("status code is not 202");
 
+            Console.WriteLine($"get response 202 and wait for result... , id:{id}");
             return await channelReader.ReadAsync(cancellationToken);
         }
     }

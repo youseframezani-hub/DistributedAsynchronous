@@ -14,7 +14,7 @@ namespace Client
             serviceProvider = SetupDependencyInjection();
             for (int i = 0; i < 8; i++)
             {
-                Task.Run(async ()=> await CallApi()); 
+                Task.Run(async () => await CallApi());
             }
 
             Console.ReadLine();
@@ -29,7 +29,7 @@ namespace Client
 
                 Console.WriteLine($"start call api with id:{id}");
                 var result = await webApi.GetValueAsync(id, new CancellationTokenSource(16000).Token);
-                Console.WriteLine($"result api, id:{result.Id}, name:{result.Name}");
+                Console.WriteLine($"successful result, id:{result.Id}, name:{result.Name}");
             }
             catch (Exception ex)
             {
@@ -39,7 +39,11 @@ namespace Client
 
 
         static IServiceProvider SetupDependencyInjection() => new ServiceCollection()
-            .AddRedisChannel(option => option.ConnectionString = "localhost")
+            .AddRedisChannel(option =>
+            {
+                option.ConnectionString = "localhost";
+                option.IsPersistence = true;
+            })
             .AddSingleton<WebApiService>().BuildServiceProvider();
 
     }

@@ -27,7 +27,11 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddRedisChannel(option => option.ConnectionString = "localhost");
+            services.AddRedisChannel(option =>
+            {
+                option.ConnectionString = "localhost";
+                option.IsPersistence = true;
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

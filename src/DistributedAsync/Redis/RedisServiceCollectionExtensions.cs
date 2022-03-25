@@ -1,4 +1,5 @@
 ﻿using DistributedAsync.Abstractions;
+using DistributedAsync.Tools;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
@@ -17,7 +18,8 @@ namespace DistributedAsync.Redis
         {
             var redisOptions = new RedisOptions();
             setupAction(redisOptions);
-            services.AddSingleton<IChannelFactory>(new RedisChannelFactory(redisOptions.ConnectionString));
+            services.AddSingleton<ISerializer, NewtonsoftSerializer>();
+            services.AddSingleton<IChannelFactory>(s => new RedisChannelFactory(redisOptions, s.GetService<ISerializer>()));
 
             return services;
         }
@@ -26,5 +28,13 @@ namespace DistributedAsync.Redis
     public class RedisOptions
     {
         public string ConnectionString { get; set; }
+        public bool IsPersistence { get; set; }
+        public PersistenceOption PersistenceOption { get; set; }
+    }
+    public class PersistenceOption
+    {
+        public int DataBaseNumber { get; set; }
+        public int PersistenceExpirationInMinute { get; set; }
+        internal TimeSpan PersistenceExpiration => TimeSpan.FromMinutes(PersistenceExpirationInMinute);
     }
 }
