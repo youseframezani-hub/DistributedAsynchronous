@@ -6,7 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F6452D98-783A-475D-8E75-70C931172EA7}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		Readme.txt = Readme.txt
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DistributedAsync", "src\DistributedAsync\DistributedAsync.csproj", "{82A0E3BE-4422-48B7-9D4D-19675C0F940F}"
